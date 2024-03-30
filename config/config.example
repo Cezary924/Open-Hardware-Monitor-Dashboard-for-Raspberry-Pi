@@ -1,0 +1,5 @@
+                OHM Server IP & Port
+----------------------------------------------------
+Change & put these two lines into 'config.ini' file:
+ip: xxx.xxx.xxx.xxx
+port: 8085
