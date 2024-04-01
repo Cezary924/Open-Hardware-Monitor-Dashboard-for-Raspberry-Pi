@@ -10,6 +10,20 @@ os.chdir(dir)
 # write stdout to both console and file
 sys.stdout = log.Logger()
 
+# find current version number
+version = "Error!"
+try:
+    with open('../SECURITY.md', 'r') as file:
+        content = file.read()
+        match = re.compile(r'\b\d+\.\d+\b').search(content)
+        if match:
+            version = match.group()
+except Exception as e:
+    pass
+
+# starting log message
+log.print_log("", "", 1, version)
+
 # handle exit (also with CTRL + C)
 def ctrl_c(signal = None, frame = None) -> None:
     log.print_log("", "", -1)
