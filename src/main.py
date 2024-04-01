@@ -54,3 +54,30 @@ if 'updateInterval' in configuration:
         pass
     if updateInterval < 1:
         updateInterval = 1
+
+# main loop
+while True:
+    try:
+        res = ohm.get_pc_info(configuration)
+    except Exception as e:
+        ohm.print_err(e)
+    else:
+        cpu = {}
+        ram = {}
+        gpu = {}
+        try:
+            c = fun.find_cpu_loc(res)
+            cpu['load'] = fun.find_cpu_load(c, res)
+            cpu['temp'] = fun.find_cpu_temp(c, res)
+            r = fun.find_ram_loc(res)
+            ram['load'] = fun.find_ram_load(r, res)
+            g = fun.find_gpu_loc(res)
+            gpu['load'] = fun.find_gpu_load(g, res)
+            gpu['temp'] = fun.find_gpu_temp(g, res)
+            gpu['memload'] = fun.find_gpu_memload(g, res)
+        except Exception as e:
+            fun.print_err(e)
+        pc = {'cpu': cpu, 'ram': ram, 'gpu': gpu}
+        log.print_log(str(pc))
+    finally:
+        time.sleep(updateInterval)
