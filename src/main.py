@@ -30,3 +30,13 @@ except Exception as e:
     if str(e) != '':
         config.print_err(e)
     ctrl_c()
+
+# get update interval
+updateInterval = 3
+if 'updateInterval' in configuration:
+    try:
+        updateInterval = int(configuration['updateInterval'])
+    except:
+        pass
+    if updateInterval < 1:
+        updateInterval = 1
