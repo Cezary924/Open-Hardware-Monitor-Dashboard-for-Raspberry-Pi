@@ -1,3 +1,4 @@
+import log
 
 def find_component_loc(text, pc, rev = False):
     if rev:
@@ -81,3 +82,6 @@ def find_gpu_memload(i, pc):
         raise Exception("No supported GPU!")
     return calculate_component_value(pc[i]['Children'][j]['Children'], "Memory")
 
+# print info about error during data parsing
+def print_err(e: Exception) -> None:
+    log.print_log("An error has occured while parsing the OHM Server data.", str(e))
