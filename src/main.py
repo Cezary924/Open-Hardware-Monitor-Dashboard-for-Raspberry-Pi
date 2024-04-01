@@ -1,4 +1,5 @@
-import os, requests
+import os, sys, re, signal, time
+import log, config, ohm, fun
 
 # get path of directory containing bot script
 dir = os.path.dirname(os.path.realpath(__file__)) + "/"
@@ -6,15 +7,26 @@ dir = os.path.dirname(os.path.realpath(__file__)) + "/"
 # change current working directory to 'dir'
 os.chdir(dir)
 
-# read config from configuration file
-#TODO errors
-with open("../config/config.ini") as f:
-    config = dict(x.rstrip().split(": ") for x in f)
+# write stdout to both console and file
+sys.stdout = log.Logger()
 
-#TODO errors
-res = requests.get("http://" + config['ip'] + ":" + config['port'] + "/data.json")
+# handle exit (also with CTRL + C)
+def ctrl_c(signal = None, frame = None) -> None:
+    log.print_log("", "", -1)
+    sys.exit(0)
+signal.signal(signal.SIGINT, ctrl_c)
 
-if res.status_code != 200:
-    raise Exception("Connection failed")
+# check if configuration file exists
+config_file_path = '../config/config.ini'
+if not config.check_file(config_file_path):
+    config.create_config(config_file_path)
+    ctrl_c()
 
-res = res.json()
+# load configuration from file & check its correctness
+try:
+    configuration = config.load_config(config_file_path)
+    config.check_correctness(configuration, config_file_path)
+except Exception as e:
+    if str(e) != '':
+        config.print_err(e)
+    ctrl_c()
