@@ -1,5 +1,7 @@
 import requests
 
+import log
+
 # get PC info from OpenHardwareMonitor Server website
 def get_pc_info(config):
     res = requests.get("http://" + config['ip'] + ":" + config['port'] + "/data.json")
@@ -10,3 +12,7 @@ def get_pc_info(config):
     except Exception as e:
         raise Exception(str(e))
     return res
+
+# print info about error during requesting to Homebridge API
+def print_err(e: Exception) -> None:
+    log.print_log("An error has occured while requesting the OHM Server data.", str(e))
