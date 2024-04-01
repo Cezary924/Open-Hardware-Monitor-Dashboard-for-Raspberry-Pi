@@ -1,5 +1,7 @@
 import json, os
 
+import log
+
 # check if configuration file exists
 def check_file(path: str) -> bool:
     return os.path.isfile(path)
@@ -23,4 +25,9 @@ def load_config(path: str) -> dict:
 
 # check correctness of loaded configuration
 def check_correctness(configuration: dict, path: str) -> None:
+    #TODO
     pass
+
+# print info about error during preparing configuration
+def print_err(e: Exception) -> None:
+    log.print_log("An error has occured while loading the config file.", str(e))
