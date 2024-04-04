@@ -7,7 +7,22 @@
 </div><br/>
 
 ## ✨ Dashboard Design
-![A screenshot of a dashboard design](https://github.com/Cezary924/Open-Hardware-Monitor-Dashboard-for-Raspberry-Pi/blob/master/dashboard.jpg?raw=true)
+![A screenshot of a dashboard design](https://raw.githubusercontent.com/Cezary924/Open-Hardware-Monitor-Dashboard-for-Raspberry-Pi/master/dashboard.png)
+- Made to be displayed on a 480x320 3.5" RPi screen.
+- Consists of 6 gauges showing different PC parameters:
+   - CPU Load [%]
+   - CPU Temp [°C]
+   - RAM Load [%]
+   - VRAM Load [%]
+   - GPU Load [%]
+   - GPU Temp [°C]
+
+## PC Requirements
+- Intel CPU
+  > Other brands have not been tested yet.
+- NVIDIA GPU
+  > Other brands have not been tested yet.
+- Installed and started Open Hardware Monitor's Server
 
 ## ⚙️ Installation
 1. Clone this repo.
