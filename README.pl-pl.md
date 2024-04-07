@@ -33,6 +33,7 @@ pip install -r requirements.txt
 ```
 
 ## 🚀 Konfiguracja & Pierwsze Uruchomienie
+   > Skrypt potrzebuje 30s na uruchomienie, cierpliwości!
 1. Aby uruchomić skrypt, wykonaj to polecenie będąc w głównym folderze:
 ```
 python src/bot.py
