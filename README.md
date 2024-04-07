@@ -33,6 +33,7 @@ pip install -r requirements.txt
 ```
 
 ## 🚀 Configuration & The First Start
+   > The script needs 30s to boot up, be patient!
 1. To start, execute this command in the main directory:
 ```
 python src/main.py
