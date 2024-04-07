@@ -2,14 +2,14 @@
 
 ## Current Version
 
-Currently, the latest version of OHM Dashboard for Raspberry Pi is **0.2**.
+Currently, the latest version of OHM Dashboard for Raspberry Pi is **0.3**.
 An information about the newest update can be found in the Releases section.
 
 ## Supported Versions
 
 | Version | Support status |
 | :-: | :-: |
-| _0.2_ | :white_check_mark: |
+| _0.3_ | :white_check_mark: |
 | _x.x - x.x_ | :heavy_check_mark: |
 | _0.x - 0.1_ | :x: |
 
