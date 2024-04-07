@@ -1,4 +1,4 @@
-import json, os
+import json, os, re
 
 import log
 
@@ -9,7 +9,7 @@ def check_file(path: str) -> bool:
 # create configuration file
 def create_config(path: str) -> None:
     with open(path, 'w') as f:
-        json.dump({"ip": "XXX.XXX.XXX.XXX", "port": "XXXX", "updateInterval": "XXXXXX"}, f, indent = 4)
+        json.dump({"ip": "XXX.XXX.XXX.XXX", "port": "8085", "updateInterval": "3"}, f, indent = 4)
     log.print_log("A config file has been created successfully.", "Please, edit the configuration and run the script again.")
 
 # save configuartion to file
@@ -25,7 +25,21 @@ def load_config(path: str) -> dict:
 
 # check correctness of loaded configuration
 def check_correctness(configuration: dict, path: str) -> None:
-    #TODO
+    if "ip" not in configuration.keys():
+        raise Exception("No 'ip' key in the configuration file!")
+    else:
+        if re.search(r'^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$', configuration["ip"]) == None:
+            raise Exception('Wrong IP address format!')
+    if "port" not in configuration.keys():
+        raise Exception("No 'port' key in the configuration file!")
+    else:
+        if re.search(r'^\d+$', configuration["port"]) == None:
+            raise Exception('Wrong port format!')
+    if "updateInterval" not in configuration.keys():
+        raise Exception("No 'updateInterval' key in the configuration file!")
+    else:
+        if re.search(r'^\d+$', configuration["updateInterval"]) == None:
+            raise Exception('Wrong updateInterval format!')
     pass
 
 # print info about error during preparing configuration
