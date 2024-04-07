@@ -1,5 +1,7 @@
 import os, sys, re, signal, time
-import log, config, ohm, fun
+import tkinter as tk
+
+import log, config, ohm, fun, sliders
 
 # get path of directory containing bot script
 dir = os.path.dirname(os.path.realpath(__file__)) + "/"
@@ -25,10 +27,22 @@ except Exception as e:
 log.print_log("", "", 1, version)
 
 # handle exit (also with CTRL + C)
+window = None
 def ctrl_c(signal = None, frame = None) -> None:
+    global window
+    if window != None:
+        window.destroy()
+        window = None
+        log.print_log("The window has been destroyed.")
     log.print_log("", "", -1)
     sys.exit(0)
 signal.signal(signal.SIGINT, ctrl_c)
+def ctrl_c_window(signal = None) -> None:
+    global window
+    if window != None:
+        window.destroy()
+        window = None
+        log.print_log("The window has been destroyed.")
 
 # check if configuration file exists
 config_file_path = '../config/config.ini'
@@ -55,6 +69,20 @@ if 'updateInterval' in configuration:
     if updateInterval < 1:
         updateInterval = 1
 
+# window preparation
+window = tk.Tk()
+width, height = 480, 320 
+window.resizable(False, False)
+window.geometry(str(width) + "x" + str(height))
+window.attributes('-fullscreen', True)
+sliders.set_values(width, height)
+sliders.draw_sliders(window, [[["CPU", "Load [%]"], ["RAM", "Load [%]"], ["GPU", "Load [%]"]], 
+                              [["CPU", "Temp [°C]"], ["VRAM", "Load [%]"], ["GPU", "Temp [°C]"]]])
+window.bind("<Control-c>", ctrl_c_window)
+window.protocol("WM_DELETE_WINDOW", ctrl_c_window)
+window.update()
+log.print_log("The window has been created.")
+
 # main loop
 while True:
     try:
@@ -78,6 +106,12 @@ while True:
         except Exception as e:
             fun.print_err(e)
         pc = {'cpu': cpu, 'ram': ram, 'gpu': gpu}
-        log.print_log(str(pc))
+        if window != None:
+            sliders.update_sliders(window, [[int(cpu['load']), int(ram['load']), int(gpu['load'])], 
+                                            [int(cpu['temp']), int(gpu['memload']), int(gpu['temp'])]])
     finally:
         time.sleep(updateInterval)
+        try:
+            window.update()
+        except Exception as e:
+            pass
