@@ -2,8 +2,8 @@
    <h1>Open Hardware Monitor Dashboard for Raspberry Pi</h1>
    <h3>📊</h3>
    <h3>Sprawdź użycie/temperaturę CPU, GPU i RAMu poprzez dashboard na Raspberry Pi</h3>
-   <a href="https://github.com/Cezary924/Open-Hardware-Monitor-Dashboard-for-Raspberry-Pi/blob/master/README.md" target="__blank"><img alt="A Etykieta z napisem 'Jęz 🇬🇧' - link prowadzi do pliku README w języku angielskim" src="https://img.shields.io/badge/Jęz-🇬🇧-012169?style=for-the-badge"></a>
-   <a href="https://github.com/Cezary924/Open-Hardware-Monitor-Dashboard-for-Raspberry-Pi/blob/master/README.pl-pl.md" target="__blank"><img alt="A Etykieta z napisem 'Jęz 🇵🇱' - link prowadzi do pliku README w języku polskim" src="https://img.shields.io/badge/Jęz-🇵🇱-dc143c?style=for-the-badge"></a>
+   <a href="https://github.com/Cezary924/Open-Hardware-Monitor-Dashboard-for-Raspberry-Pi/blob/master/README.md" target="__blank"><img alt="Etykieta z napisem 'Jęz 🇬🇧' - link prowadzi do pliku README w języku angielskim" src="https://img.shields.io/badge/Jęz-🇬🇧-012169?style=for-the-badge"></a>
+   <a href="https://github.com/Cezary924/Open-Hardware-Monitor-Dashboard-for-Raspberry-Pi/blob/master/README.pl-pl.md" target="__blank"><img alt="Etykieta z napisem 'Jęz 🇵🇱' - link prowadzi do pliku README w języku polskim" src="https://img.shields.io/badge/Jęz-🇵🇱-dc143c?style=for-the-badge"></a>
 </div><br/>
 
 ## ✨ Dashboard Design
