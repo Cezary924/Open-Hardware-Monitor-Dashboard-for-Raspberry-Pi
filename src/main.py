@@ -77,7 +77,7 @@ window = tk.Tk()
 width, height = 480, 320 
 window.resizable(False, False)
 window.geometry(str(width) + "x" + str(height))
-window.attributes('-fullscreen', True)
+window.after(100, lambda: window.wm_attributes('-fullscreen', 'true'))
 sliders.set_values(width, height)
 sliders.draw_sliders(window, [[["CPU", "Load [%]"], ["RAM", "Load [%]"], ["GPU", "Load [%]"]], 
                               [["CPU", "Temp [°C]"], ["VRAM", "Load [%]"], ["GPU", "Temp [°C]"]]])
