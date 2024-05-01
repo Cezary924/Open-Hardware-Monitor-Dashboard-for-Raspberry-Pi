@@ -3,9 +3,6 @@ import tkinter as tk
 
 import log, config, ohm, fun, sliders
 
-# wait for every OS component to start
-time.sleep(30)
-
 # get path of directory containing bot script
 dir = os.path.dirname(os.path.realpath(__file__)) + "/"
 
