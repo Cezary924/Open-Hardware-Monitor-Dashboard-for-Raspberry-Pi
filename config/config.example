@@ -1,7 +1,11 @@
 {
     "ip": "xxx.xxx.xxx.xxx",
     "port": "8085",
-    "width": "480",
-    "height": "320",
-    "updateInterval": "3"
+    "updateInterval": "3",
+    "display":
+    {
+        "width": "480",
+        "height": "320",
+        "refreshRate": "60"
+    }
 }

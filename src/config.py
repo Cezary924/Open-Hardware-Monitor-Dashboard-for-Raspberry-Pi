@@ -9,7 +9,7 @@ def check_file(path: str) -> bool:
 # create configuration file
 def create_config(path: str) -> None:
     with open(path, 'w') as f:
-        json.dump({"ip": "XXX.XXX.XXX.XXX", "port": "8085", "width": "480", "height": "320", "updateInterval": "3"}, f, indent = 4)
+        json.dump({"ip": "XXX.XXX.XXX.XXX", "port": "8085", "updateInterval": "3", "display": {"width": "480", "height": "320", "refreshRate": "60"}}, f, indent = 4)
     log.print_log("A config file has been created successfully.", "Please, edit the configuration and run the script again.")
 
 # save configuartion to file
@@ -35,24 +35,6 @@ def check_correctness(configuration: dict, path: str) -> None:
     else:
         if re.search(r'^\d+$', configuration["port"]) == None:
             raise Exception('Wrong port format!')
-    if "width" not in configuration.keys():
-        raise Exception("No 'width' key in the configuration file!")
-    else:
-        if re.search(r'^\d+$', configuration["width"]) == None:
-            raise Exception('Wrong width format!')
-    try:
-        configuration["width"] = int(configuration["width"])
-    except Exception:
-        raise Exception('Wrong width format!')
-    if "height" not in configuration.keys():
-        raise Exception("No 'height' key in the configuration file!")
-    else:
-        if re.search(r'^\d+$', configuration["height"]) == None:
-            raise Exception('Wrong height format!')
-    try:
-        configuration["height"] = int(configuration["height"])
-    except Exception:
-        raise Exception('Wrong height format!')
     if "updateInterval" not in configuration.keys():
         raise Exception("No 'updateInterval' key in the configuration file!")
     else:
@@ -62,6 +44,36 @@ def check_correctness(configuration: dict, path: str) -> None:
         configuration["updateInterval"] = int(configuration["updateInterval"])
     except Exception:
         raise Exception('Wrong updateInterval format!')
+    if "display" not in configuration.keys():
+        pass
+    else:
+        if "width" not in configuration['display'].keys():
+            raise Exception("No 'width' key in the configuration file!")
+        else:
+            if re.search(r'^\d+$', configuration['display']["width"]) == None:
+                raise Exception('Wrong width format!')
+        try:
+            configuration['display']["width"] = int(configuration['display']["width"])
+        except Exception:
+            raise Exception('Wrong width format!')
+        if "height" not in configuration['display'].keys():
+            raise Exception("No 'height' key in the configuration file!")
+        else:
+            if re.search(r'^\d+$', configuration['display']["height"]) == None:
+                raise Exception('Wrong height format!')
+        try:
+            configuration['display']["height"] = int(configuration['display']["height"])
+        except Exception:
+            raise Exception('Wrong height format!')
+        if "refreshRate" not in configuration['display'].keys():
+            raise Exception("No 'refreshRate' key in the configuration file!")
+        else:
+            if re.search(r'^\d+$', configuration['display']["refreshRate"]) == None:
+                raise Exception('Wrong refreshRate format!')
+        try:
+            configuration['display']["refreshRate"] = int(configuration['display']["refreshRate"])
+        except Exception:
+            raise Exception('Wrong refreshRate format!')
 
 # print info about error during preparing configuration
 def print_err(e: Exception) -> None:
