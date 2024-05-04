@@ -2,6 +2,7 @@
     "ip": "xxx.xxx.xxx.xxx",
     "port": "8085",
     "updateInterval": "3",
+    "dashboardType": "1",
     "display":
     {
         "width": "480",

@@ -9,7 +9,7 @@ def check_file(path: str) -> bool:
 # create configuration file
 def create_config(path: str) -> None:
     with open(path, 'w') as f:
-        json.dump({"ip": "XXX.XXX.XXX.XXX", "port": "8085", "updateInterval": "3", "display": {"width": "480", "height": "320", "refreshRate": "60"}}, f, indent = 4)
+        json.dump({"ip": "XXX.XXX.XXX.XXX", "port": "8085", "updateInterval": "3", "dashboardType": "1", "display": {"width": "480", "height": "320", "refreshRate": "60"}}, f, indent = 4)
     log.print_log("A config file has been created successfully.", "Please, edit the configuration and run the script again.")
 
 # save configuartion to file
@@ -44,8 +44,17 @@ def check_correctness(configuration: dict, path: str) -> None:
         configuration["updateInterval"] = int(configuration["updateInterval"])
     except Exception:
         raise Exception('Wrong updateInterval format!')
+    if "dashboardType" not in configuration.keys():
+        raise Exception("No 'dashboardType' key in the configuration file!")
+    else:
+        if re.search(r'^\d+$', configuration["dashboardType"]) == None:
+            raise Exception('Wrong dashboardType format!')
+    try:
+        configuration["dashboardType"] = int(configuration["dashboardType"])
+    except Exception:
+        raise Exception('Wrong dashboardType format!')
     if "display" not in configuration.keys():
-        pass
+        raise Exception("No 'display' dict in the configuration file!")
     else:
         if "width" not in configuration['display'].keys():
             raise Exception("No 'width' key in the configuration file!")
