@@ -38,7 +38,7 @@ pip install -r requirements.txt
 ```
 python src/main.py
 ```
-2. During the first launch, the script created a *config.ini* file in a *config* directory. Please, edit the file with your data *(server IP, port & updateInterval)*.
+2. During the first launch, the script created a *config.ini* file in a *config* directory. Please, edit the file with your data *(server IP, port, updateInterval, dashboardType, width, height, refreshRate)*.
    > At this step, please remember to run the server built into the Open Hardware Monitor app.
 3. If the information provided is correct, the script will start successfully and create a dashboard window.
 4. Enjoy!
