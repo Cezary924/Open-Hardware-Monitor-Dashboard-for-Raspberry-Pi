@@ -38,7 +38,7 @@ pip install -r requirements.txt
 ```
 python src/bot.py
 ```
-2. Podczas pierwszego uruchomienia, skrypt stworzy plik *config.ini* w folderze *config*. Dokonaj edycji tego pliku umieszczając w nim swoje dane *(IP serwera, port & okres między aktualizacjami)*.
+2. Podczas pierwszego uruchomienia, skrypt stworzy plik *config.ini* w folderze *config*. Dokonaj edycji tego pliku umieszczając w nim swoje dane *(IP serwera, port, okres między aktualizacjami, typ dashboardu, szer. ekr., wys. ekr., odśw. ekr.)*.
    > W tym miejscu pamiętaj, aby uruchomić serwer wbudowany w aplikację Open Hardware Monitor.
 3. Jeśli wprowadzone informacje są prawidłowe, skrypt pomyślnie się uruchomi i stworzy okno zawierające dashboard.
 4. Gotowe!
