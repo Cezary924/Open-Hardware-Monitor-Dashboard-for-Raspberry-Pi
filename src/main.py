@@ -40,7 +40,8 @@ signal.signal(signal.SIGINT, ctrl_c)
 def ctrl_c_window(signal = None) -> None:
     global window
     if window != None:
-        window.destroy()
+        window.withdraw()
+        window.quit()
         window = None
         log.print_log("The window has been destroyed.")
 
