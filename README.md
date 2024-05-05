@@ -7,8 +7,9 @@
 </div><br/>
 
 ## ✨ Dashboard Design
-![A screenshot of a dashboard design](https://raw.githubusercontent.com/Cezary924/Open-Hardware-Monitor-Dashboard-for-Raspberry-Pi/master/dashboard.png)
-- Made to be displayed on a 480x320 3.5" RPi screen.
+![A screenshot of a type-1 dashboard design](https://raw.githubusercontent.com/Cezary924/Open-Hardware-Monitor-Dashboard-for-Raspberry-Pi/master/dashboard1.png)
+![A screenshot of a type-2 dashboard design](https://raw.githubusercontent.com/Cezary924/Open-Hardware-Monitor-Dashboard-for-Raspberry-Pi/master/dashboard2.png)
+- Designed to be displayed on a RPi screen.
 - Consists of 6 gauges showing different PC parameters:
    - CPU Load [%]
    - CPU Temp [°C]
