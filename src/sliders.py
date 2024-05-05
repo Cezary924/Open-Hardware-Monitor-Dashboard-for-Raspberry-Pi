@@ -35,7 +35,7 @@ def animate_sliders(window, t, olov, nlov, step = 0):
                       olov[4] - delta[4] * step, olov[5] - delta[5] * step]
     try:
         if t == 2:
-            pass#update_sliders_2([[current_values[0], current_values[1], current_values[2]], [current_values[3], current_values[4], current_values[5]]])
+            update_sliders_2([[current_values[0], current_values[1], current_values[2]], [current_values[3], current_values[4], current_values[5]]])
         else:
             update_sliders_1([[current_values[0], current_values[1], current_values[2]], [current_values[3], current_values[4], current_values[5]]])
         if step < refreshRate * updateInterval:
@@ -94,3 +94,59 @@ def update_sliders_1(list_of_values):
             label = canvas[i][j].create_text(x+1, y-2+4*arc_w, text = str(int(list_of_values[i][j])), fill = "white", font = f'Helvetica {str(arc_w+2)}')
             pointers[i][j] = (line, circle, label)
 
+def draw_sliders_2(window, list_of_text):
+    global canvas, pointers, max_i, max_j
+    for i in range(max_i):
+        _canvas = []
+        _pointers = []
+        for j in range(max_j):
+            c = tk.Canvas(window, width = width/max_j, height = height/max_i, bg = 'black', highlightthickness = 0)
+            c.grid(column=j, row=i)
+            rgb = (88, 88, 88)
+            rgb2 = (int(128*0.66), int(128*0.66), int(128*0.66))
+            rgb3 = (int(128*0.33), int(128*0.33), int(128*0.33))
+            c.create_arc(x1, y1, x2, y2, start = 0, extent = 180, outline = "#%02x%02x%02x" % rgb3, width = arc_w+6, style=tk.ARC)
+            c.create_arc(x1, y1, x2, y2, start = 0, extent = 180, outline = "#%02x%02x%02x" % rgb2, width = arc_w+5, style=tk.ARC)
+            c.create_arc(x1, y1, x2, y2, start = 0, extent = 180, outline = "#%02x%02x%02x" % rgb, width = arc_w+4, style=tk.ARC)
+            bar3 = c.create_arc(x1, y1, x2, y2, start = 0, extent = 0, outline = "#%02x%02x%02x" % rgb3, width = arc_w+6, style=tk.ARC)
+            bar2 = c.create_arc(x1, y1, x2, y2, start = 0, extent = 0, outline = "#%02x%02x%02x" % rgb2, width = arc_w+5, style=tk.ARC)
+            bar = c.create_arc(x1, y1, x2, y2, start = 0, extent = 0, outline = "#%02x%02x%02x" % rgb, width = arc_w+4, style=tk.ARC)
+            c.create_text(x, y+6*arc_w, text = list_of_text[i][j][0], fill = "white", font = f'Helvetica {str(arc_w+12)} bold')
+            c.create_text(x, y+8.5*arc_w, text = list_of_text[i][j][1], fill = "white", font = f'Helvetica {str(arc_w+8)} italic')
+            label = c.create_text(x, y+arc_w, text = "-", fill = "white", font = f'Helvetica {str(arc_w+20)}')
+            _canvas.append(c)
+            _pointers.append((bar3, bar2, bar, label))
+        canvas.append(_canvas)
+        pointers.append(_pointers)
+
+def update_sliders_2(list_of_values):
+    global canvas, pointers, max_i, max_j
+    for i in range(max_i):
+        for j in range(max_j):
+            canvas[i][j].delete(pointers[i][j][0])
+            canvas[i][j].delete(pointers[i][j][1])
+            canvas[i][j].delete(pointers[i][j][2])
+            canvas[i][j].delete(pointers[i][j][3])
+            val = int(list_of_values[i][j] * 1.8)
+            if val > 180:
+                val = 180
+            elif val < 0:
+                val = 0
+            red = 255
+            green = 255
+            if val > 90:
+                green -= int(255/90 * (val-90))
+                if green < 0:
+                    green = 0
+            elif val < 90:
+                red -= int(255/90 * (90-val))
+                if red < 0:
+                    red = 0
+            rgb = (red, green, 0)
+            rgb2 = (int(red*0.75), int(green*0.75), 0)
+            rgb3 = (int(red*0.50), int(green*0.50), 0)
+            bar3 = canvas[i][j].create_arc(x1, y1, x2, y2, start = 180, extent = -val, outline = "#%02x%02x%02x" % rgb3, width = arc_w+6, style=tk.ARC)
+            bar2 = canvas[i][j].create_arc(x1, y1, x2, y2, start = 180, extent = -val, outline = "#%02x%02x%02x" % rgb2, width = arc_w+5, style=tk.ARC)
+            bar = canvas[i][j].create_arc(x1, y1, x2, y2, start = 180, extent = -val, outline = "#%02x%02x%02x" % rgb, width = arc_w+4, style=tk.ARC)
+            label = canvas[i][j].create_text(x, y+arc_w, text = str(int(list_of_values[i][j])), fill = "white", font = f'Helvetica {str(arc_w+20)}')
+            pointers[i][j] = (bar3, bar2, bar, label)

@@ -88,8 +88,8 @@ window.geometry(str(width) + "x" + str(height))
 window.after(100, lambda: window.wm_attributes('-fullscreen', 'true'))
 sliders.set_values(width, height, refreshRate, updateInterval)
 if dashboardType == 2:
-    #sliders.draw_sliders_2(window, [[["CPU", "Load [%]"], ["RAM", "Load [%]"], ["GPU", "Load [%]"]], 
-    pass#                          [["CPU", "Temp [°C]"], ["VRAM", "Load [%]"], ["GPU", "Temp [°C]"]]])
+    sliders.draw_sliders_2(window, [[["CPU", "Load [%]"], ["RAM", "Load [%]"], ["GPU", "Load [%]"]], 
+                              [["CPU", "Temp [°C]"], ["VRAM", "Load [%]"], ["GPU", "Temp [°C]"]]])
 else:
     sliders.draw_sliders_1(window, [[["CPU", "Load [%]"], ["RAM", "Load [%]"], ["GPU", "Load [%]"]], 
                               [["CPU", "Temp [°C]"], ["VRAM", "Load [%]"], ["GPU", "Temp [°C]"]]])
@@ -135,7 +135,3 @@ while True:
             update_sliders_async(window, dashboardType, pc_old, pc)
     finally:
         time.sleep(updateInterval)
-        try:
-            window.update()
-        except Exception as e:
-            pass
