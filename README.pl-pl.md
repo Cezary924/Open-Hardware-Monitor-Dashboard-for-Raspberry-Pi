@@ -7,8 +7,9 @@
 </div><br/>
 
 ## ✨ Dashboard Design
-![Zrzut ekranu układu dashboard](https://raw.githubusercontent.com/Cezary924/Open-Hardware-Monitor-Dashboard-for-Raspberry-Pi/master/dashboard.png)
-- Przeznaczony do wyświetlania na 480x320 3.5" ekranie RPi.
+![Zrzut ekranu układu dashboard typu 1](https://raw.githubusercontent.com/Cezary924/Open-Hardware-Monitor-Dashboard-for-Raspberry-Pi/master/dashboard1.png)
+![Zrzut ekranu układu dashboard typu 2](https://raw.githubusercontent.com/Cezary924/Open-Hardware-Monitor-Dashboard-for-Raspberry-Pi/master/dashboard2.png)
+- Przeznaczony do wyświetlania na ekranie RPi.
 - Składa się z 6 mierników odpowiadających parametrom PC:
    - użycie CPU [%]
    - temperatura CPU [°C]
